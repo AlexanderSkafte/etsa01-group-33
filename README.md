@@ -6,10 +6,8 @@ Code for the bicycle parking garage software goes here.
 Create a directory anywhere on your computer and enter it. The name/location
 does not matter.
 
-```
-mkdir *folder*
-cd *folder
-```
+`mkdir <dir-name>`
+`cd <dir-name>`
 
 Then init a new git repository. You need to have git installed on your computer.
 
