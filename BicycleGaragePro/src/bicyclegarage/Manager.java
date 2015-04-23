@@ -14,6 +14,11 @@ public class Manager {
     private static final int MAX_PINS = 10000;
     private static final int ERR_OUT_OF_PINS = -1;
     
+    /* (!) Globals */
+    public static final int MAX_BICYCLES = 500;
+    public static int bicyclesRegistered = 0;
+    
+    
     public Manager() {
         users = new HashSet<User>();
     }
@@ -22,10 +27,11 @@ public class Manager {
      * Adds a new to the set of users of the garage.
      * Returns true if user could be added, i.e. the
      * garage is not full or user is not already registered.
-     * @param firstName The first name(s) of the user
-     * @param lastName  The last name(s) of the user
-     * @param NIN       The National Identification Number of the user
-     * @return true if garage is not full and user is not already registered
+     * @param firstName The user's first name(s)
+     * @param lastName  The user's last name(s)
+     * @param NIN       The user's National Identification Number
+     * @return true if garage is not full and user is not already registered,
+     *         false otherwise
      */
     public boolean addUser(String firstName, String lastName, String NIN) {
         int pin = generatePIN();
@@ -35,11 +41,52 @@ public class Manager {
             return users.add(new User(firstName, lastName, NIN, pin));
         }
     }
-
-    public void listAllUsers() {
-        for (User u : users) {
-            System.out.println(u.toString());
+    
+    /**
+     * Remove/unregisters the user identified by [NIN] and returns true if the
+     * user was removed, else returns false.
+     * @param NIN The user's National Identification number
+     * @return True if user was removed, false otherwise
+     */
+    public boolean removeUser(String NIN) {
+        User u = getUserByNIN(NIN);
+        if (u == null) {
+            System.err.println("[!] No user with the NIN \"" + NIN
+                    + "\" was found.");
+            return false;
         }
+        return users.remove(u);
+    }
+    
+    /**
+     * Returns the user identified by [NIN] if it could be found, else null.
+     * @param NIN The user's National Identification Number
+     * @return The user identified by [NIN] if found, else null
+     */
+    public User getUserByNIN(String NIN) {
+        for (User u : users) {
+            if (u.getNIN().equals(NIN)) {
+                return u;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns a newline-delimited list of all users. If there are no users,
+     * this method just returns and empty string ("").
+     * @return A newline-delimited list of all users, or an empty string if
+     *         there are no users.
+     */
+    public String listAllUsers() {
+        if (users.isEmpty()) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (User u : users) {
+            sb.append(u.toString()).append("\n");
+        }
+        return sb.toString();
     }
 
     public void entryBarcode(String code) {

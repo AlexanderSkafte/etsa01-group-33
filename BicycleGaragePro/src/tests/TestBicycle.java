@@ -47,11 +47,11 @@ public class TestBicycle extends Attributes {
         assertNotEquals(invalidBicycleID, b.getID());
     }
 
-    @Test
-    public void testGetOwner() {
-        User u = validUser;
-        Bicycle b = new Bicycle(validBicycleID, u);
-        assertEquals(u, b.getOwner());
-    }
+//    @Test
+//    public void testGetOwner() {
+//        User u = validUser;
+//        Bicycle b = new Bicycle(validBicycleID, u);
+//        assertEquals(u, b.getOwner());
+//    }
 
 }

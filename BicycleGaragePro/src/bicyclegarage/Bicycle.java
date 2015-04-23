@@ -2,7 +2,7 @@ package bicyclegarage;
 
 public class Bicycle {
     private final String ID;
-    private final User owner;
+//    private final User owner;
 
     // Add these eventually
     // private Date lastCheckIn;
@@ -25,7 +25,7 @@ public class Bicycle {
         }
         
         this.ID = ID;
-        this.owner = owner;
+//        this.owner = owner;
         // isCheckedIn = false;
     }
 
@@ -37,13 +37,13 @@ public class Bicycle {
         return ID;
     }
 
-    /**
-     * Get the owner of the bicycle.
-     * @return The owner of the bicycle.
-     */
-    public User getOwner() {
-        return owner;
-    }
+//    /**
+//     * Get the owner of the bicycle.
+//     * @return The owner of the bicycle.
+//     */
+//    public User getOwner() {
+//        return owner;
+//    }
 
     // Check in and check out should be handled by the manager, right?
 
