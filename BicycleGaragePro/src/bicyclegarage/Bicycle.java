@@ -14,8 +14,17 @@ public class Bicycle {
      * @param bicycleID The 5-digit ID number of the bicycle
      * @param owner     The bicycle's owner
      */
-    public Bicycle(String bicycleID, User owner) {
-        ID = bicycleID;
+    public Bicycle(String ID, User owner) {
+        if (ID == null || owner == null) {
+            throw new IllegalArgumentException(
+                    "Error! Null parameter to Bicycle constructor.");
+        }
+        if (!ID.matches("\\d{5}")) {
+            throw new IllegalArgumentException(
+                    "Error! Length of bicycle ID must be exactly 5 digits.");
+        }
+        
+        this.ID = ID;
         this.owner = owner;
         // isCheckedIn = false;
     }

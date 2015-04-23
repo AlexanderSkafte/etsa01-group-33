@@ -1,13 +1,13 @@
 package interfaces;
 
-import bicyclegarage.BicycleGarageManager;
+import bicyclegarage.Manager;
 
 public interface PinCodeTerminal {
 	
 	/* Register bicycle garage manager so that the pin code
 	 * terminal knows which manager to call when a user has 
 	 * pressed a key. */
-	public void register(BicycleGarageManager manager);
+	public void register(Manager manager);
 	
 	/* Turn on LED for lightTime seconds.
 	 * Colour: 

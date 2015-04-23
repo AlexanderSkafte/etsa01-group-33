@@ -28,6 +28,10 @@ public class User {
      * @param PIN       Personal Identification Number of the user
      */
     public User(String firstName, String lastName, String NIN, int PIN) {
+        if (firstName == null || lastName == null || NIN == null
+                || !isValidNIN(NIN) || !isValidPIN(PIN)) {
+            throw new IllegalArgumentException("Error! Invalid arguments to User");
+        }
         this.firstName = firstName;
         this.lastName = lastName;
         this.NIN = NIN;
@@ -42,6 +46,22 @@ public class User {
      */
     public String toString() {
         return lastName + ", " + firstName + " (NIN: " + NIN + ", PIN: " + PIN + ")";
+    }
+    
+    /**
+     * Returns the first name(s) of the user.
+     * @return The first name(s) of the user
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+    
+    /**
+     * Returns the last name(s) of the user.
+     * @return The last name(s) of the user
+     */
+    public String getLastName() {
+        return lastName;
     }
 
     /**
@@ -75,6 +95,8 @@ public class User {
      * @return True if bicycle could be associated with user, false otherwise
      */
     public boolean addBicycle(Bicycle bicycle) {
+        if (bicycle == null)
+            return false;
         return bicycles.add(bicycle);
     }
 

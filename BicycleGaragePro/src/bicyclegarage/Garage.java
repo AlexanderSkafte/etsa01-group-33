@@ -10,9 +10,10 @@ import testdrivers.BarcodeReaderExitTestDriver;
 import testdrivers.ElectronicLockTestDriver;
 import testdrivers.PinCodeTerminalTestDriver;
 
-public class BicycleGarage {
-	public BicycleGarage() {
-		BicycleGarageManager manager = new BicycleGarageManager();
+public class Garage {
+    
+	public Garage() {
+		Manager manager = new Manager();
 		ElectronicLock entryLock = new ElectronicLockTestDriver("Entry lock");
 		ElectronicLock exitLock = new ElectronicLockTestDriver("Exit lock");
 		BarcodePrinter printer = new BarcodePrinterTestDriver();
@@ -26,6 +27,6 @@ public class BicycleGarage {
 	}
 
 	public static void main(String[] args) {
-		new BicycleGarage();
+		new Garage();
 	}
 }

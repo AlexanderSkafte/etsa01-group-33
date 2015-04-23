@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import bicyclegarage.BicycleGarageManager;
+import bicyclegarage.Manager;
 
 /**
  * This is an abstract class representing the common parts for all
@@ -25,7 +25,7 @@ abstract public class BarcodeReaderTestDriver implements BarcodeReader, ActionLi
 	
 	private JFrame frame;
 	private JTextField scannedCode;
-	protected BicycleGarageManager manager;
+	protected Manager manager;
 	private JButton scanButton;
 	
 	/**
@@ -34,7 +34,7 @@ abstract public class BarcodeReaderTestDriver implements BarcodeReader, ActionLi
 	* the reader. 
 	* @param manager The bicycle garage manager 
 	*/
-	public void register(BicycleGarageManager manager) {
+	public void register(Manager manager) {
 		this.manager = manager;
 	}
 	

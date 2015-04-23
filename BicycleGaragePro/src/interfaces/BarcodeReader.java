@@ -1,6 +1,6 @@
 package interfaces;
 
-import bicyclegarage.BicycleGarageManager;
+import bicyclegarage.Manager;
 
 public interface BarcodeReader {
 	
@@ -8,5 +8,5 @@ public interface BarcodeReader {
 	 * reader knows which manager to call when a user has used 
 	 * the reader. 
 	 */
-	public void register(BicycleGarageManager manager);	
+	public void register(Manager manager);	
 }
