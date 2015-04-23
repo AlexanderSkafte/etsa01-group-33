@@ -1,12 +1,14 @@
 package bicyclegarage;
 
+import java.util.Date;
+
 public class Bicycle {
     private final String ID;
 //    private final User owner;
 
-    // Add these eventually
-    // private Date lastCheckIn;
-    // private boolean isCheckedIn;
+    private Date lastCheckedIn;
+    private Date lastCheckedOut;
+    private boolean isCheckedIn;
 
     /**
      * Creates a new Bicycle. Bicycle ID and owner can't be changed after
@@ -45,15 +47,15 @@ public class Bicycle {
 //        return owner;
 //    }
 
-    // Check in and check out should be handled by the manager, right?
-
-    // void checkIn(Date date) {
-    //
-    // isCheckedIn = true;
-    // }
-    //
-    // void checkOut(Date date) {
-    //
-    // isCheckedIn = false;
-    // }
+     public void checkIn() {
+         if (isCheckedIn)
+             return;
+         lastCheckedIn = new Date();
+         isCheckedIn = true;
+     }
+    
+     public void checkOut() {
+         lastCheckedOut = new Date();
+         isCheckedIn = false;
+     }
 }

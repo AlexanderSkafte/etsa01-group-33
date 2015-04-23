@@ -81,23 +81,44 @@ public class User {
     }
 
     /**
-     * Returns the set of all bicycles which belong to the owner.
-     * @return The set of all bicycles which belong to the owner
-     */
-    public Set<Bicycle> getBicycles() {
-        return bicycles;
-    }
-
-    /**
      * Associates [bicycle] with the user. Returns true if [bicycle] was not
      * already associated with the user, else false.
      * @param bicycle The bicycle to associate with the user
      * @return True if bicycle could be associated with user, false otherwise
      */
     public boolean addBicycle(Bicycle bicycle) {
-        if (bicycle == null)
+        
+        if (bicycle == null) {
+            System.err.println("[!] null parameter to addBicycle.");
             return false;
-        return bicycles.add(bicycle);
+        }
+        
+        if (Manager.bicyclesRegistered >= Manager.MAX_BICYCLES) {
+            System.err.println("[!] Garage is full.");
+            return false;
+        }
+        
+        if (bicycles.contains(bicycle)) {
+            System.err.println("[!] Bicycle is already registered.");
+            return false;
+        }
+        
+        if (bicycles.add(bicycle)) {
+            Manager.bicyclesRegistered += 1;
+            return true;
+        } else {
+            System.err.println("[!!!] Something went terribly wrong!"
+                                + "Time to debug.");
+            return false;            
+        }
+    }
+    
+    /**
+     * Returns the set of all bicycles which belong to the owner.
+     * @return The set of all bicycles which belong to the owner
+     */
+    public Set<Bicycle> getBicycles() {
+        return bicycles;
     }
 
     /**
@@ -119,12 +140,17 @@ public class User {
      * =====================================================================
      */
 
+    /**
+     * Checks so that [NIN] is a valid National Identity Number
+     * @param NIN The National Identification Number to check the validity of
+     * @return Whether or not [NIN] was valid
+     */
     public static boolean isValidNIN(String NIN) {
         boolean isValid = false;
 
         isValid = NIN.length() == NIN_LENGTH;
 
-        // Add more checks eventually
+        // Add more checks eventually, perhaps with regex?
 
         return isValid;
     }

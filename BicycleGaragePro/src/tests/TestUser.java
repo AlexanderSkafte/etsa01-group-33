@@ -5,9 +5,16 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import bicyclegarage.Bicycle;
+import bicyclegarage.FullGarageException;
+import bicyclegarage.Manager;
 import bicyclegarage.User;
 
 public class TestUser extends Attributes {
+    
+    private void reset() {
+        validUser.getBicycles().clear();
+        Manager.bicyclesRegistered = 0;
+    }
 
     @Test
     public void testUser() {
@@ -15,7 +22,7 @@ public class TestUser extends Attributes {
     }
     
     /*
-     * Add more tests for constructor. See TestBicycle class.
+     * Add more tests for constructor. See TestBicycle class for examples.
      */
     
     @Test
@@ -55,27 +62,41 @@ public class TestUser extends Attributes {
     }
 
     @Test
-    public void testAddBicycle() {
+    public void testAddBicycleTwiceAndNull() /*throws FullGarageException */{
         User u = validUser;
         Bicycle b = validBicycle;
         assertTrue(u.addBicycle(b));
-        assertFalse(u.addBicycle(b)); // Bicycle is already in garage, so fail
+        assertFalse(u.addBicycle(b));
         assertFalse(u.addBicycle(null));
+        reset();
     }
-
+    
     @Test
-    public void testGetBicycleByID() {
+    public void testAddBicyclesMoreThanMax() {
+        User u = validUser;
+        boolean passed = false;
+        for (int i = 0; i < Manager.MAX_BICYCLES + 1; ++i) {
+            passed = u.addBicycle(
+                    new Bicycle(String.format("%05d", i),
+                                u));
+        }
+        assertFalse(passed);
+        reset();
+    }
+    
+    @Test
+    public void testGetBicycleByID() throws FullGarageException {
         User u = validUser;
         Bicycle b = validBicycle;
         u.addBicycle(b);
         assertEquals(validBicycle, u.getBicycleByID(validBicycleID));
+        reset();
     }
 
-    /* TODO
-     *  Implement further! */
     @Test
     public void testIsValidNIN() {
         assertTrue(User.isValidNIN(validNIN));
+        fail("Test implementation not finished");
     }
 
     @Test
