@@ -5,7 +5,7 @@ import java.util.Set;
 
 /*
  * Glossary:
- * 	NIN = National Identity Number ("personnummer" in Swedish)
+ * 	NIN = National Identification Number ("personnummer" in Swedish)
  * 	PIN = Personal Identification Number
  */
 
@@ -20,6 +20,13 @@ public class User {
 
     private final static int NIN_LENGTH = 12;
 
+    /**
+     * Creates a new user of the bicycle garage.
+     * @param firstName The first name(s) of the user
+     * @param lastName  The last name(s) of the user
+     * @param NIN       National Identification Number of the user
+     * @param PIN       Personal Identification Number of the user
+     */
     public User(String firstName, String lastName, String NIN, int PIN) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,33 +35,54 @@ public class User {
         this.bicycles = new HashSet<Bicycle>();
     }
 
+    /**
+     * Return a string representation of the user. An example:
+     *  "lastname, firstname (NIN: 900101-1234, PIN: 5678)"
+     *  @return A string representation of the user
+     */
     public String toString() {
         return lastName + ", " + firstName + " (NIN: " + NIN + ", PIN: " + PIN + ")";
     }
 
+    /**
+     * Returns the national identification number of the user.
+     * @return The national identification number of the user
+     */
     public String getNIN() {
         return NIN;
     }
 
+    /**
+     * Returns the personal identification number of the user.
+     * @return The personal identification number of the user
+     */
     public int getPIN() {
         return PIN;
     }
 
+    /**
+     * Returns the set of all bicycles which belong to the owner.
+     * @return The set of all bicycles which belong to the owner
+     */
     public Set<Bicycle> getBicycles() {
         return bicycles;
     }
 
     /**
-     * Associates @bicycle with this user. Returns true if @bicycle was not
-     * already associated with this user.
+     * Associates [bicycle] with the user. Returns true if [bicycle] was not
+     * already associated with the user, else false.
+     * @param bicycle The bicycle to associate with the user
+     * @return True if bicycle could be associated with user, false otherwise
      */
     public boolean addBicycle(Bicycle bicycle) {
         return bicycles.add(bicycle);
     }
 
     /**
-     * Returns the bicycle identified by the @ID parameter. If the bicycle was
-     * not found, returns null.
+     * Returns the bicycle identified by [ID]. If the bicycle was
+     * not found, null is returned.
+     * @param ID The identification number of the bicycle to find
+     * @return The bicycle identified by [ID] if found, else null
      */
     public Bicycle getBicycleByID(String ID) {
         for (Bicycle b : bicycles)
