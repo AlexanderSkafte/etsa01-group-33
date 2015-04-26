@@ -6,43 +6,42 @@ import static org.junit.Assert.assertNotEquals;
 import org.junit.Test;
 
 import bicyclegarage.Bicycle;
-import bicyclegarage.User;
 
 public class TestBicycle extends Attributes {
     
     @Test
     public void testBicycleValid() {
-        Bicycle b = new Bicycle("12345", validUser);
+        Bicycle b = new Bicycle("12345");
     }
     
     @Test(expected = IllegalArgumentException.class)
     public void testBicycleNullID() {
-        new Bicycle(null, new User(validFirstName, validLastName, validNIN, validPIN));
+        new Bicycle(null);
     }
     
     @Test(expected = IllegalArgumentException.class)
     public void testBicycleNullTooShortID() {
-        new Bicycle("123", new User(validFirstName, validLastName, validNIN, validPIN));
+        new Bicycle("123");
     }
     
     @Test(expected = IllegalArgumentException.class)
     public void testBicycleNullTooLongID() {
-        new Bicycle("123456", new User(validFirstName, validLastName, validNIN, validPIN));
+        new Bicycle("123456");
     }
     
     @Test(expected = IllegalArgumentException.class)
     public void testBicycleNullAlphaNumericID1() {
-        new Bicycle("abc12", new User(validFirstName, validLastName, validNIN, validPIN));
+        new Bicycle("abc12");
     }
     
     @Test(expected = IllegalArgumentException.class)
     public void testBicycleNullAlphaNumericID2() {
-        new Bicycle("12abc", new User(validFirstName, validLastName, validNIN, validPIN));
+        new Bicycle("12abc");
     }
     
     @Test
     public void testGetID() {
-        Bicycle b = new Bicycle(validBicycleID, validUser);
+        Bicycle b = new Bicycle(validBicycleID);
         assertEquals(validBicycleID, b.getID());
         assertNotEquals(invalidBicycleID, b.getID());
     }

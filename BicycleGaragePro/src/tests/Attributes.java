@@ -25,7 +25,6 @@ public class Attributes {
     public final static User validUser = new User(
             validFirstName, validLastName, validNIN, validPIN);
     
-    public final static Bicycle validBicycle = new Bicycle(
-            validBicycleID, validUser);
+    public final static Bicycle validBicycle = new Bicycle(validBicycleID);
 
 }

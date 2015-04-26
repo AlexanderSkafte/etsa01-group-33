@@ -77,8 +77,7 @@ public class TestUser extends Attributes {
         boolean passed = false;
         for (int i = 0; i < Manager.MAX_BICYCLES + 1; ++i) {
             passed = u.addBicycle(
-                    new Bicycle(String.format("%05d", i),
-                                u));
+                    new Bicycle(String.format("%05d", i)));
         }
         assertFalse(passed);
         reset();
