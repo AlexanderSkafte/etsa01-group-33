@@ -13,7 +13,7 @@ public class Manager {
     private Set<User> users;
     private static final int MAX_PINS = 10000;
     private static final int ERR_OUT_OF_PINS = -1;
-    
+
     /* (!) Globals */
     public static final int MAX_BICYCLES = 500;
     public static int bicyclesRegistered = 0;
@@ -24,7 +24,7 @@ public class Manager {
     }
 
     /**
-     * Adds a new to the set of users of the garage.
+     * Adds a new user to the set of users of the garage.
      * Returns true if user could be added, i.e. the
      * garage is not full or user is not already registered.
      * @param firstName The user's first name(s)
@@ -41,7 +41,7 @@ public class Manager {
             return users.add(new User(firstName, lastName, NIN, pin));
         }
     }
-    
+
     /**
      * Remove/unregisters the user identified by [NIN] and returns true if the
      * user was removed, else returns false.
@@ -57,7 +57,7 @@ public class Manager {
         }
         return users.remove(u);
     }
-    
+
     /**
      * Returns the user identified by [NIN] if it could be found, else null.
      * @param NIN The user's National Identification Number
@@ -110,12 +110,12 @@ public class Manager {
         // TODO Auto-generated method stub
 
     }
-    
-    
+
+
     /* ===================================================================== *\
      *  PRIVATE METHODS
      * ===================================================================== */
-    
+
     /**
      * Generate a unique PIN code (unique meaning it is not attached to
      * any user.
@@ -125,7 +125,7 @@ public class Manager {
         Random r = new Random();
         int pinsGenerated = 0;
         int pin;
-        
+
         do {
             if (pinsGenerated >= MAX_PINS) {
                 System.err.println("Failure: Out of PIN codes.");
@@ -134,10 +134,10 @@ public class Manager {
             pin = r.nextInt(MAX_PINS);
             pinsGenerated += 1;
         } while (pinExists(pin));
-        
+
         return pin;
     }
-    
+
     /**
      * Returns true if any user in the set of users already has [PIN] attached
      * to them.

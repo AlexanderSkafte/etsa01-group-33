@@ -20,7 +20,7 @@ import bicyclegarage.Manager;
  * It can be used when BicycleGarageManager is tested.
  * 
  * @version 1.0
- * @author Martin H�st 
+ * @author Martin Höst 
  */
 public class PinCodeTerminalTestDriver implements PinCodeTerminal, ActionListener {
 	

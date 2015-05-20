@@ -11,7 +11,7 @@ public class Bicycle {
     /**
      * Creates a new Bicycle. Bicycle ID and owner can't be changed after
      * initialization.
-     * @param bicycleID The 5-digit ID number of the bicycle
+     * @param ID The 5-digit ID number of the bicycle
      */
     public Bicycle(String ID) {
         if (ID == null) {
