@@ -47,7 +47,6 @@ public class UserDB {
 			fos.close();
 			return true;
 		} catch(IOException e) {
-			e.printStackTrace();
 			System.out.println(e);
 			return false;
 		}
@@ -66,11 +65,9 @@ public class UserDB {
 			fis.close();
 			return true;
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 			System.out.println(e);
 			return false;
 		} catch (IOException e) {
-			e.printStackTrace();
 			System.out.println(e);
 			return false;
 		}

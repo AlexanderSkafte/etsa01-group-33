@@ -26,8 +26,8 @@ public class Garage {
 		readerEntry.register(manager);
 		readerExit.register(manager);
 
-		//manager.addUser("Dennis", "Jin", "9509296738");
-		User user = manager.getUserByNIN("9509296738");
+		manager.addUser("Dennis", "Jin", "1234567891");
+		User user = manager.getUserByNIN("1234567891");
 		String ID = manager.addBicycle(user);
 		printer.printBarcode(ID);
 		manager.printAll();
