@@ -1,8 +1,9 @@
 package bicyclegarage;
 
 import java.util.Date;
+import java.io.*;
 
-public class Bicycle {
+public class Bicycle implements Serializable {
     private final String ID;
     private Date lastCheckedIn;
     private Date lastCheckedOut;

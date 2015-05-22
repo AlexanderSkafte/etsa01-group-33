@@ -83,6 +83,7 @@ public class UserDB {
 		for (User u : users) {
 			System.out.println(u.toString());
 			u.printBicycles();
+			System.out.println("\n======================================");
 		}
 	}
 }

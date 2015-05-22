@@ -48,10 +48,21 @@ public class User implements Serializable {
         return lastName + ", " + firstName + " (NIN: " + NIN + ", PIN: " + PIN + ")";
     }
     
+    /**
+     * Prints bicycles that belong to this user
+     */
     public void printBicycles() {
+    	System.out.print("Bicycles: ");
     	for (Bicycle b : bicycles) {
-    		System.out.println(b.getID());
+    		System.out.print(b.getID() + " ");
     	}
+    }
+    
+    /**
+     * Clears all bicycles that belong to user
+     */
+    public void clearBicycles() {
+    	this.bicycles = new HashSet<Bicycle>();
     }
     
     /**

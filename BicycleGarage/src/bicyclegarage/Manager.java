@@ -85,6 +85,7 @@ public class Manager {
     public String addBicycle(User user) {
     	int counter = 0;
     	int tempID = randInt(10000, 99999);
+    	
     	while (bicycleIDExists(Integer.toString(tempID))) {
     		if (counter > 89999) {
     			System.err.println("No bicycle IDs left");
@@ -114,6 +115,11 @@ public class Manager {
     	return false;
     }
     
+    public void clearUserBicycles(User user) {
+    	user.clearBicycles();
+    	uDB.saveDB();
+    }
+    
     /**
      * Checks if a bicycle ID exists
      * @param ID bicycle ID
@@ -122,7 +128,7 @@ public class Manager {
     public boolean bicycleIDExists(String ID) {
     	for (User u : users) {
     		for (Bicycle b : u.getBicycles()) {
-    			if (b.getID() == ID) return true;
+    			if (b.getID().equals(ID)) return true;
     		}
     	}
     	return false;
