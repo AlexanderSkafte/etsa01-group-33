@@ -216,7 +216,9 @@ public class Garage {
 	       case "addUser": {
 	    	   String[] userInfo = argument.split(";");
 	    	   if (userInfo.length == 3) {
-	    		   if (manager.getUserByNIN(userInfo[2]) != null) {
+	    		   if (uDB.getList().size() > 8999) {
+	    			   textarea.append("No more unique PINs available. Remove some users");
+	    		   } else if (manager.getUserByNIN(userInfo[2]) != null) {
 	    			   textarea.append("This user already exists");
 	    		   } else if(manager.addUser(userInfo[0], userInfo[1], userInfo[2])) {
 	    			   textarea.append(userInfo[0] + " " + userInfo[1] + " has been added");

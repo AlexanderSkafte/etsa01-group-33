@@ -163,8 +163,12 @@ public class Manager {
         		// User exists
         		return false;
         	}
-            users.add(new User(firstName, lastName, NIN, pin));
-            return uDB.saveDB();
+        	try {
+        		users.add(new User(firstName, lastName, NIN, pin));
+        		return uDB.saveDB();
+        	} catch(IllegalArgumentException e) {
+        		return false;
+        	}
         }
     }
 
