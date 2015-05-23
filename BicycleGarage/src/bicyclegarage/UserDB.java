@@ -74,13 +74,15 @@ public class UserDB {
 	}
 	
 	/**
-	 * Prints the user DB
+	 * Returns complete DB as a String
 	 */
-	public void printDB() {
+	public String getDBPrint() {
+		String tempPrint = "";
 		for (User u : users) {
-			System.out.println(u.toString());
-			u.printBicycles();
-			System.out.println("\n======================================");
+			tempPrint += u.toString() + "\n";
+			tempPrint += u.bicyclesToString() + "\n";
+			tempPrint += "------------------------------------------\n";
 		}
+		return tempPrint;
 	}
 }

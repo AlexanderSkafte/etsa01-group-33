@@ -1,6 +1,7 @@
 package bicyclegarage;
 
 import java.util.*;
+import java.util.regex.Pattern;
 import java.io.*;
 
 /*
@@ -41,21 +42,22 @@ public class User implements Serializable {
 
     /**
      * Return a string representation of the user. An example:
-     *  "lastname, firstname (NIN: 900101-1234, PIN: 5678)"
+     *  "firstname, lastname (NIN: 900101-1234, PIN: 5678)"
      *  @return A string representation of the user
      */
     public String toString() {
-        return lastName + ", " + firstName + " (NIN: " + NIN + ", PIN: " + PIN + ")";
+        return firstName + ", " + lastName + " (NIN: " + NIN + ", PIN: " + PIN + ")";
     }
     
     /**
      * Prints bicycles that belong to this user
      */
-    public void printBicycles() {
-    	System.out.print("Bicycles: ");
+    public String bicyclesToString() {
+    	String tempBicycles = "Bicycles: ";
     	for (Bicycle b : bicycles) {
-    		System.out.print(b.getID() + " ");
+    		tempBicycles += b.getID() + " ";
     	}
+    	return tempBicycles;
     }
     
     /**
@@ -163,12 +165,13 @@ public class User implements Serializable {
      */
     public static boolean isValidNIN(String NIN) {
         boolean isValid = false;
-
+        boolean isOnlyNumbers = false;
+        
         isValid = NIN.length() == NIN_LENGTH;
-
+        isOnlyNumbers = !Pattern.matches("[a-zA-Z]+", NIN);
         // Add more checks eventually, perhaps with regex?
-
-        return isValid;
+        
+        return (isValid && isOnlyNumbers);
     }
 
     public static boolean isValidPIN(int PIN) {

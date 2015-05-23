@@ -32,7 +32,24 @@ public class Bicycle implements Serializable {
      * Returns a string containing information about the bicycle
      */
     public String toString(){
-    	return "ID:" + ID + " Checked in: " + isCheckedIn;
+    	String checkInDate;
+    	String checkOutDate;
+    	
+    	if (lastCheckedOut == null) {
+    		checkOutDate = "Never";
+    	} else {
+    		checkOutDate = lastCheckedOut.toString();
+    	}
+
+    	if (lastCheckedIn == null) {
+    		checkInDate = "Never";
+    	} else {
+    		checkInDate = lastCheckedIn.toString();
+    	}
+    	return "ID: " + ID + "\n"
+    			+ "Is checked in: " + isCheckedIn + "\n"
+    			+ "Last checked in: " + checkInDate + "\n"
+    			+ "Last checked out: " + checkOutDate;
     }
     
     /**
@@ -54,14 +71,14 @@ public class Bicycle implements Serializable {
     public boolean checkIn() {
         if (isCheckedIn)
             return false;
-        lastCheckedIn = new Date();
-        isCheckedIn = true;
+        this.lastCheckedIn = new Date();
+        this.isCheckedIn = true;
         return true;
     }
 
     public boolean checkOut() {
-        lastCheckedOut = new Date();
-        isCheckedIn = false;
+        this.lastCheckedOut = new Date();
+        this.isCheckedIn = false;
         return false;
     }
 }

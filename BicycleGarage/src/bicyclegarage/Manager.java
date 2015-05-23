@@ -1,12 +1,9 @@
 package bicyclegarage;
 import java.util.*;
-import interfaces.BarcodePrinter;
 import interfaces.ElectronicLock;
 import interfaces.PinCodeTerminal;
 
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 
 public class Manager {
 
@@ -16,7 +13,6 @@ public class Manager {
     /* Hardware */
     private ElectronicLock entryLock;
     private ElectronicLock exitLock;
-    private BarcodePrinter printer;
     private PinCodeTerminal terminal;
     
     /* Random */
@@ -71,7 +67,7 @@ public class Manager {
     public Bicycle findBicycle(String ID) {
     	for (User u : users) {
     		for (Bicycle b : u.getBicycles()) {
-    			if (b.getID() == ID) return b;
+    			if (b.getID().equals(ID)) return b;
     		}
     	}
     	return null;
@@ -88,7 +84,7 @@ public class Manager {
     	
     	while (bicycleIDExists(Integer.toString(tempID))) {
     		if (counter > 89999) {
-    			System.err.println("No bicycle IDs left");
+    			// No IDS left
     			return null;
     		}
     		tempID = randInt(10000, 99999);
@@ -164,7 +160,7 @@ public class Manager {
             return false;
         } else {
         	if (NINExists(NIN)) {
-        		System.err.println("User already exists");
+        		// User exists
         		return false;
         	}
             users.add(new User(firstName, lastName, NIN, pin));
@@ -181,8 +177,7 @@ public class Manager {
     public boolean removeUser(String NIN) {
         User u = getUserByNIN(NIN);
         if (u == null) {
-            System.err.println("[!] No user with the NIN \"" + NIN
-                    + "\" was found.");
+            // No user found
             return false;
         }
         users.remove(u);
@@ -225,23 +220,30 @@ public class Manager {
     }
     
     /**
-     * Prints all users in the database using the toString() in the User class.
+     * Get UserDB object
+     * @return UserDB object
      */
-    public void printAll() {
-    	uDB.printDB();
+    public UserDB getDB() {
+    	return uDB;
     }
 
     public void entryBarcode(String code) {
         // TODO Auto-generated method stub
     	if (bicycleIDExists(code)) {
+    		Bicycle bicycle = findBicycle(code);
+    		bicycle.checkIn();
     		entryLock.open(10);
+    		uDB.saveDB();
     	}
     }
 
     public void exitBarcode(String code) {
         // TODO Auto-generated method stub
     	if (bicycleIDExists(code)) {
+    		Bicycle bicycle = findBicycle(code);
+    		bicycle.checkOut();
     		exitLock.open(10);
+    		uDB.saveDB();
     	}
     }
 
@@ -279,12 +281,10 @@ public class Manager {
      * Registers hardware drivers
      */
     public void registerHardwareDrivers(
-    		BarcodePrinter printer,
             ElectronicLock entryLock,
             ElectronicLock exitLock,
             PinCodeTerminal terminal) {
         // TODO Auto-generated method stub
-    	this.printer = printer;
     	this.entryLock = entryLock;
     	this.exitLock = exitLock;
     	this.terminal = terminal;
@@ -306,7 +306,7 @@ public class Manager {
 
         do {
             if (pinsGenerated >= MAX_PINS) {
-                System.err.println("Failure: Out of PIN codes.");
+                // No more pins
                 return ERR_OUT_OF_PINS;
             }
             pin = randInt(1000, MAX_PINS);
