@@ -1,28 +1,12 @@
-# etsa01-group-33
-Code for the bicycle parking garage software goes here.
+# ETSA01 - code for the Bicycle Garage Pro
 
-## Setting up the repository
+Code for the bicycle parking garage software project in the LTH course ETSA01
+goes here.
 
-Create a directory anywhere on your computer and enter it. The name/location
-does not matter.
+For all the documents related to the software engineering aspect of this
+project, please refer to https://github.com/Desuvader/ETSA01.
 
-`mkdir <dir-name> && cd <dir-name>`
+**Running the code:** Inside the repository mentioned above, there is a folder
+called "run" with the file "run.pdf" inside. There you will find instructions
+for running the software.
 
-Then init a new git repository. You need to have git installed on your computer.
-
-`git init`
-
-Now link your folder to this repository:
-
-`git remote add https://github.com/AlexanderSkafte/etsa01-group-33.git`
-
-Download all the stuff in the repository:
-
-`git pull origin master`
-
-Now you should have all the files in your directory.
-
-
-## Editing code
-
-To be written...
