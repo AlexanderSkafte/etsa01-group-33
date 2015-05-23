@@ -198,7 +198,7 @@ public class Garage {
 	    	   textarea.append("  removeBicycle <bicycle ID>        Remove bicycle by bicycle ID\n");
 	    	   textarea.append("  printBarcode <bicycle ID>         Print new barcode by bicycle ID\n");
 	    	   textarea.append("Example usage (only select few):\n");
-	    	   textarea.append("  addUser John;Smith;1234567891");
+	    	   textarea.append("  addUser John;Smith;1234567891\n");
 	    	   textarea.append("  addBicycle 1234567891");
 	    	   break;
 	       }
