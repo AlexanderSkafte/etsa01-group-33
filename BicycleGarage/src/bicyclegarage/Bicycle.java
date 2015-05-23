@@ -57,7 +57,7 @@ public class Bicycle implements Serializable {
      * @return true if the bicycle is checked in. Otherwise false
      */
     public boolean isCheckedIn() {
-    	return isCheckedIn();
+    	return isCheckedIn;
     }
 
     /**

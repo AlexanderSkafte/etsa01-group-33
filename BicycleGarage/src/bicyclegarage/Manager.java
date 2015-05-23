@@ -229,7 +229,7 @@ public class Manager {
 
     public void entryBarcode(String code) {
         // TODO Auto-generated method stub
-    	if (bicycleIDExists(code)) {
+    	if (bicycleIDExists(code) && checkedInBicycles() < 0) {
     		Bicycle bicycle = findBicycle(code);
     		bicycle.checkIn();
     		entryLock.open(10);
