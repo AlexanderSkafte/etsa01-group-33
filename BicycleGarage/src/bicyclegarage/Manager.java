@@ -230,24 +230,40 @@ public class Manager {
     public UserDB getDB() {
     	return uDB;
     }
-
+    
+    /**
+     * Checks in bicycle if barcode is valid
+     * @param code bicycle ID
+     */
     public void entryBarcode(String code) {
         // TODO Auto-generated method stub
-    	if (bicycleIDExists(code) && checkedInBicycles() > 500) {
+    	if (bicycleIDExists(code) && checkedInBicycles() < 500) {
     		Bicycle bicycle = findBicycle(code);
-    		bicycle.checkIn();
-    		entryLock.open(10);
-    		uDB.saveDB();
+    		if (bicycle.isCheckedIn()) {
+    			return;
+    		} else {
+    			bicycle.checkIn();
+    			entryLock.open(10);
+    			uDB.saveDB();
+    		}
     	}
     }
-
+    
+    /**
+     * Checks out bicycle if barcode is valid
+     * @param code bicycle ID
+     */
     public void exitBarcode(String code) {
         // TODO Auto-generated method stub
     	if (bicycleIDExists(code)) {
     		Bicycle bicycle = findBicycle(code);
-    		bicycle.checkOut();
-    		exitLock.open(10);
-    		uDB.saveDB();
+    		if (!bicycle.isCheckedIn()) {
+    			return;
+    		} else {
+    			bicycle.checkOut();
+    			exitLock.open(10);
+    			uDB.saveDB();
+    		}
     	}
     }
 
@@ -255,7 +271,6 @@ public class Manager {
      * Handles PIN entry at the entrance
      * @param c PIN code that is entered
      */
-    
     private Date startTimer = null;
     private String tempPIN = "";
     public void entryCharacter(char c) {

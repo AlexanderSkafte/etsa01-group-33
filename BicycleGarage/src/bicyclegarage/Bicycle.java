@@ -67,7 +67,11 @@ public class Bicycle implements Serializable {
     public String getID() {
         return ID;
     }
-
+    
+    /**
+     * Checks in bicycle
+     * @return true always
+     */
     public boolean checkIn() {
         if (isCheckedIn)
             return false;
@@ -76,9 +80,13 @@ public class Bicycle implements Serializable {
         return true;
     }
 
+    /**
+     * Checks out the bicycle
+     * @return true always
+     */
     public boolean checkOut() {
         this.lastCheckedOut = new Date();
         this.isCheckedIn = false;
-        return false;
+        return true;
     }
 }
